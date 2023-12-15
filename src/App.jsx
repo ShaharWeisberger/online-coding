@@ -3,7 +3,7 @@
 // import viteLogo from '/vite.svg'
 import { useState } from "react";
 import "./App.css";
-import CodePage from "./components/pages/CodePage.jsx";
+import CodePage from "./components/pages/CodeBlockPage.jsx";
 import LobbyPage from "./components/pages/LobbyPage.jsx";
 import PageContext from "./store/PageContext.jsx";
 

@@ -7,11 +7,15 @@ export default function CodePage() {
 
   const PageCtx = useContext(PageContext);
   let renderCodePage = "";
+  function hansleBackToLobby() {
+    PageCtx.setPage("lobby");
+  }
   if (PageCtx.pageName === "code") {
     renderCodePage = (
       <>
         <h2>Welcome to the code block page :)</h2>
         <Item title={PageCtx.selectedTitle} />
+        <button onClick={hansleBackToLobby}>Back to lobby</button>
       </>
     );
   }
