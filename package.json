@@ -13,18 +13,19 @@
   "dependencies": {
     "codemirror": "^5.65.16",
     "firebase-admin": "^12.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.2",
+    "react-codemirror2": "^7.3.0",
+    "react-dom": "^17.0.2",
     "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.5.1"
   }
 }
