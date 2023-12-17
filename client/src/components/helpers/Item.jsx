@@ -12,9 +12,7 @@ export default function Item({ title = "" }) {
   // prepare the code string for comparison
   // removes extra spaces and special characters.
   function replaceWhitespace(inputString) {
-    let step0 = inputString.split("\\n").join("\n");
-
-    let step1 = step0.replace(/ +/g, " ");
+    let step1 = inputString.replace(/ +/g, " ");
     let step2 = step1.replace(/[\n\t\r]+/g, "");
     return step2;
   }
@@ -42,7 +40,8 @@ export default function Item({ title = "" }) {
         let s = data.code.split("\\n").join("\n");
         setEditedCode(s);
         PageCtx.setFirstPageVisit(data.firstTime);
-        PageCtx.setGoldenCode(replaceWhitespace(data.goldencode));
+        let g = data.goldencode.split("\\n").join("\n");
+        PageCtx.setGoldenCode(replaceWhitespace(g));
       } catch (error) {
         console.error("Error fetching data:    ", error);
       }
