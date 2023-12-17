@@ -48,12 +48,15 @@ app.get("/getCode", async (req, res) => {
     }
 
     const code = querySnapshot.docs[0].data().code;
+    const goldencode = querySnapshot.docs[0].data().goldencode;
+
+    //BBBBBBBBBBBBBBBBBBBBBBBBBBB
     let firstTime = false;
     if (!(title in alreadyUsedDict)) {
       firstTime = true;
       alreadyUsedDict[title] = true;
     }
-    res.json({ code, firstTime });
+    res.json({ code, goldencode, firstTime });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal server error." });

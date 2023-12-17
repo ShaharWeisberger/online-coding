@@ -9,6 +9,7 @@ export default function App() {
   const [selectedTitle, setSelectedTitle] = useState("");
   const [newItemCode, setNewItemCode] = useState("");
   const [firstPageVisit, setFirstPageVisit] = useState(true);
+  const [goldenCode, setGoldenCode] = useState(true);
 
   const contextValue = {
     pageName,
@@ -19,6 +20,8 @@ export default function App() {
     setNewItemCode,
     firstPageVisit,
     setFirstPageVisit,
+    goldenCode,
+    setGoldenCode,
   };
   return (
     <PageContext.Provider value={contextValue}>

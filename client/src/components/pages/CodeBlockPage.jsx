@@ -30,7 +30,7 @@ export default function CodePage() {
   if (PageCtx.pageName === "code") {
     renderCodePage = (
       <>
-        <h2>Welcome to the code block page :)</h2>
+        <h2 className="h2-welcome">Welcome to the code block page</h2>
         <Item title={PageCtx.selectedTitle} />
         <button onClick={hansleBackToLobby}>Back to lobby</button>
       </>

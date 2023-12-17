@@ -9,6 +9,8 @@ const PageContext = createContext({
   setNewItemCode: () => {},
   firstPageVisit: true,
   setFirstPageVisit: () => {},
+  goldenCode: "",
+  setGoldenCode: () => {},
 });
 
 export default PageContext;

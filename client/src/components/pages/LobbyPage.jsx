@@ -33,7 +33,7 @@ export default function LobbyPage() {
         <header>
           <h2>Choose code block</h2>
         </header>
-        <div>
+        <div className="buttons-in-center">
           {titles.length !== 0 &&
             titles.map((name, index) => (
               <button key={index} onClick={() => handleButtonClick(name)}>
