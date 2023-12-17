@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import CodePage from "./components/pages/CodeBlockPage.jsx";
+import CodeBlockPage from "./components/pages/CodeBlockPage.jsx";
 import LobbyPage from "./components/pages/LobbyPage.jsx";
 import PageContext from "./store/PageContext.jsx";
 
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <PageContext.Provider value={contextValue}>
       <LobbyPage />
-      <CodePage />
+      <CodeBlockPage />
     </PageContext.Provider>
   );
 }

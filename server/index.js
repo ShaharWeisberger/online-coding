@@ -3,10 +3,10 @@ const app = express();
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
-
 var admin = require("firebase-admin");
-
 var serviceAccount = require("./serviceAccountKey.json");
+
+// private key is not stored in github.
 serviceAccount.private_key_id = process.env.PRIVATE_KEY_ID;
 
 admin.initializeApp({
@@ -22,6 +22,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 
+// cors origin will be replaced with a more specific address to improve security.
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -31,7 +32,7 @@ const io = new Server(server, {
 
 const alreadyUsedDict = {};
 
-//GET from the DB the code of a  title
+// get from the DB the code of a given title
 app.get("/getCode", async (req, res) => {
   try {
     const title = req.query.title;
@@ -64,6 +65,7 @@ app.get("/getCode", async (req, res) => {
   }
 });
 
+// get the list of titles from the data base
 app.get("/getListOfTitles", async (req, res) => {
   try {
     const codeBlocksCollection = db.collection("CodeBlocks");
@@ -82,13 +84,13 @@ app.get("/getListOfTitles", async (req, res) => {
   }
 });
 
+//
 io.on("connection", (socket) => {
-  console.log(`User Connecteed ${socket.id} `);
-
   socket.on("join_page", (data) => {
     socket.join(data);
   });
 
+  // send update message only to those who are on the same page.
   socket.on("send_message", (data) => {
     socket.to(data.page).emit("receive_message", data);
     console.log(data);

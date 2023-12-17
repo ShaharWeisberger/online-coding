@@ -6,11 +6,12 @@ import { io } from "socket.io-client";
 
 const socket = io.connect("https://online-coding-production.up.railway.app/");
 
+// updating the backend server with code changes on a specific page.
 export function sendMessage(message, page) {
   socket.emit("send_message", { message, page });
 }
 
-export default function CodePage() {
+export default function CodeBlockPage() {
   const PageCtx = useContext(PageContext);
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function CodePage() {
   function hansleBackToLobby() {
     PageCtx.setPage("lobby");
   }
+
   if (PageCtx.pageName === "code") {
     renderCodePage = (
       <>

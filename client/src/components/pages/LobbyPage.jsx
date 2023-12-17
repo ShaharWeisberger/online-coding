@@ -5,6 +5,7 @@ export default function LobbyPage() {
   const [titles, setTitles] = useState([]);
   const pageCtx = useContext(PageContext);
 
+  // fetching the list of titles from the backend server
   useEffect(() => {
     async function fetchData() {
       try {

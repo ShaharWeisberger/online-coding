@@ -2,28 +2,22 @@ import { useContext, useState, useEffect } from "react";
 import { sendMessage } from "../pages/CodeBlockPage.jsx";
 import PageContext from "../../store/PageContext.jsx";
 import smileyFaceImg from "../../assets/smiley_face1.png";
-// import {formatCode} from "./prettier.js";
 
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 
-import prettier from "prettier/standalone";
-import parserBabel from "prettier/parser-babel";
-
 export default function Item({ title = "" }) {
-  // function formatCode(code) {
-  //   try {
-  //     return prettier.format(code, {
-  //       parser: "babel",
-  //       plugins: [parserBabel],
-  //     });
-  //   } catch (error) {
-  //     console.error("Error formatting code:", error);
-  //     return code; // Return original code if formatting fails
-  //   }
-  // }
+  // prepare the code string for comparison
+  // removes extra spaces and special characters.
+  function replaceWhitespace(inputString) {
+    let step0 = inputString.split("\\n").join("\n");
+
+    let step1 = step0.replace(/ +/g, " ");
+    let step2 = step1.replace(/[\n\t\r]+/g, "");
+    return step2;
+  }
   const PageCtx = useContext(PageContext);
 
   const options = {
@@ -35,6 +29,7 @@ export default function Item({ title = "" }) {
     lineWrapping: false,
   };
 
+  // fetching the code for a given title.
   useEffect(() => {
     async function fetchData() {
       try {
@@ -45,9 +40,9 @@ export default function Item({ title = "" }) {
         }
         const data = await response.json();
         let s = data.code.split("\\n").join("\n");
-        setEditedCode(s); // The good one
+        setEditedCode(s);
         PageCtx.setFirstPageVisit(data.firstTime);
-        PageCtx.setGoldenCode(data.goldencode);
+        PageCtx.setGoldenCode(replaceWhitespace(data.goldencode));
       } catch (error) {
         console.error("Error fetching data:    ", error);
       }
@@ -80,7 +75,7 @@ export default function Item({ title = "" }) {
   function MirrorCodeChange(editor, data, value) {
     setEditedCode(value);
     sendMessage(value, title);
-    setIsSmiley(PageCtx.goldenCode === value);
+    setIsSmiley(PageCtx.goldenCode === replaceWhitespace(value));
   }
 
   return (

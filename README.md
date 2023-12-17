@@ -1,8 +1,12 @@
-# React + Vite
+This project is a full stack project that provides a comunication platform
+between a mentor and a student.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend is implemented in react and the backend in node.js and express.
 
-Currently, two official plugins are available:
+The backend can be accessed at: https://online-coding-production.up.railway.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend can be run from: https://online-coding-client-production.up.railway.app
+
+The github link is: https://github.com/ShaharWeisberger/online-coding.git
+
+The backend is using firebase firestore as the data base.
