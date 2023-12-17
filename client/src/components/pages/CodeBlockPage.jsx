@@ -4,7 +4,7 @@ import PageContext from "../../store/PageContext.jsx";
 
 import { io } from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://online-coding-production.up.railway.app/");
 
 export function sendMessage(message, page) {
   socket.emit("send_message", { message, page });
