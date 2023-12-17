@@ -9,4 +9,4 @@ The frontend can be run from: https://online-coding-client-production.up.railway
 
 The github link is: https://github.com/ShaharWeisberger/online-coding.git
 
-The backend is using firebase firestore as the data base.
+The backend is using firebase firestore as its data base.
