@@ -5,6 +5,10 @@ const PageContext = createContext({
   setPage: () => {},
   selectedTitle: "",
   setSelectedTitle: () => {},
+  newItemCode: "",
+  setNewItemCode: () => {},
+  firstPageVisit: true,
+  setFirstPageVisit: () => {},
 });
 
 export default PageContext;

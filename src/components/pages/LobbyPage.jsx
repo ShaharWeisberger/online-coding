@@ -1,14 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import PageContext from "../../store/PageContext.jsx";
 
-import { getTitles } from "../helpers/Item.jsx";
-
 export default function LobbyPage() {
-  const titlesToShow = getTitles(4);
+  const [titles, setTitles] = useState([]);
   const pageCtx = useContext(PageContext);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:3001/getListOfTitles");
+        if (!response.ok) {
+          throw new Error("Network problem!");
+        }
+        const data = await response.json();
+        setTitles(data.titles);
+      } catch (error) {
+        console.error("Error fetching data:    ", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   function handleButtonClick(title) {
-    //need to complete and change th context of PageContext to 'code'
     pageCtx.setPage("code");
     pageCtx.setSelectedTitle(title);
   }
@@ -21,11 +34,12 @@ export default function LobbyPage() {
           <h2>Choose code block</h2>
         </header>
         <div>
-          {titlesToShow.map((name, index) => (
-            <button key={index} onClick={() => handleButtonClick(name)}>
-              {name}
-            </button>
-          ))}
+          {titles.length !== 0 &&
+            titles.map((name, index) => (
+              <button key={index} onClick={() => handleButtonClick(name)}>
+                {name}
+              </button>
+            ))}
         </div>
       </>
     );

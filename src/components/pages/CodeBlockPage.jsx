@@ -1,11 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Item from "../helpers/Item.jsx";
 import PageContext from "../../store/PageContext.jsx";
 
-export default function CodePage() {
-  //const title = "Error Handling";
+import { io } from "socket.io-client";
 
+const socket = io.connect("http://localhost:3001");
+
+export function sendMessage(message, page) {
+  socket.emit("send_message", { message, page });
+}
+
+export default function CodePage() {
   const PageCtx = useContext(PageContext);
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      PageCtx.setNewItemCode(data.message);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket.emit("join_page", PageCtx.selectedTitle);
+  }, [PageCtx.selectedTitle]);
+
   let renderCodePage = "";
   function hansleBackToLobby() {
     PageCtx.setPage("lobby");
