@@ -53,7 +53,7 @@ export default function Item({ title = "" }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const url = `http://localhost:3001/getCode?title=${title}`;
+        const url = `https://online-coding-production.up.railway.app/getCode?title=${title}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Network problem!");

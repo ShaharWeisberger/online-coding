@@ -8,7 +8,9 @@ export default function LobbyPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3001/getListOfTitles");
+        const response = await fetch(
+          "https://online-coding-production.up.railway.app/getListOfTitles"
+        );
         if (!response.ok) {
           throw new Error("Network problem!");
         }
