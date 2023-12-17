@@ -109,13 +109,7 @@ export default function Item({ title = "" }) {
   return (
     <>
       <h2>{title}</h2>
-      {/* <textarea
-        value={editedCode}
-        readOnly={PageCtx.firstPageVisit}
-        onChange={handleCodeChange}
-        rows={10}
-        cols={50}
-      /> */}
+
       <CodeMirror
         value={editedCode}
         onBeforeChange={(editor, data, value) =>
