@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { sendMessage } from "../pages/CodeBlockPage.jsx";
 import PageContext from "../../store/PageContext.jsx";
-import smileyFaceImg from "../../assets/smiley_face.png";
+import smileyFaceImg from "../../assets/smiley_face1.png";
 // import {formatCode} from "./prettier.js";
 
 import { Controlled as CodeMirror } from "react-codemirror2";
