@@ -59,10 +59,8 @@ export default function Item({ title = "" }) {
           throw new Error("Network problem!");
         }
         const data = await response.json();
-        let s = data.code;
-        PageCtx.setNewItemCode(s); // The good one
-
-        //PageCtx.setNewItemCode(formatCode(s)); // The good one
+        let s = data.code.split("\\n").join("\n");
+        setEditedCode(s); // The good one
         PageCtx.setFirstPageVisit(data.firstTime);
         PageCtx.setGoldenCode(data.goldencode);
       } catch (error) {
@@ -116,13 +114,12 @@ export default function Item({ title = "" }) {
       <CodeMirror
         //value={NiceEditedCode}
         value={editedCode}
-        // value={formatCode(editedCode)}
+        //value={editedCode}
         onBeforeChange={(editor, data, value) =>
           MirrorCodeChange(editor, data, value)
         }
         options={newOptions}
         className="code-mirror-container"
-        // style={{ whiteSpace: "pre-wrap" }}
       />
     </>
   );

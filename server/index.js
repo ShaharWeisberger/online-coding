@@ -30,6 +30,7 @@ const io = new Server(server, {
 
 const alreadyUsedDict = {};
 
+//GET from the DB the code of a  title
 app.get("/getCode", async (req, res) => {
   try {
     const title = req.query.title;
@@ -50,7 +51,6 @@ app.get("/getCode", async (req, res) => {
     const code = querySnapshot.docs[0].data().code;
     const goldencode = querySnapshot.docs[0].data().goldencode;
 
-    //BBBBBBBBBBBBBBBBBBBBBBBBBBB
     let firstTime = false;
     if (!(title in alreadyUsedDict)) {
       firstTime = true;
