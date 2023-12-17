@@ -12,33 +12,18 @@ import "codemirror/theme/dracula.css";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
 
-const DUMMY_DATA = [
-  { title: "Promise", code: "Promise CODE" },
-  { title: "Asynchronous function", code: "Asynchronous function CODE" },
-  { title: "Error handling", code: "Error handling CODE" },
-  { title: "Fetch data", code: "Fetch data CODE" },
-];
-
-export function getTitles(numOfTitles) {
-  if (numOfTitles >= DUMMY_DATA.length) {
-    return DUMMY_DATA.map((item) => item.title);
-  } else {
-    return DUMMY_DATA.slice(0, numOfTitles).map((item) => item.title);
-  }
-}
-
 export default function Item({ title = "" }) {
-  function formatCode(code) {
-    try {
-      return prettier.format(code, {
-        parser: "babel",
-        plugins: [parserBabel],
-      });
-    } catch (error) {
-      console.error("Error formatting code:", error);
-      return code; // Return original code if formatting fails
-    }
-  }
+  // function formatCode(code) {
+  //   try {
+  //     return prettier.format(code, {
+  //       parser: "babel",
+  //       plugins: [parserBabel],
+  //     });
+  //   } catch (error) {
+  //     console.error("Error formatting code:", error);
+  //     return code; // Return original code if formatting fails
+  //   }
+  // }
   const PageCtx = useContext(PageContext);
 
   const options = {
@@ -70,10 +55,7 @@ export default function Item({ title = "" }) {
     fetchData();
   }, []);
 
-  const foundItem = DUMMY_DATA.find((item) => item.title === title);
-
-  const { code } = foundItem || {};
-  const [editedCode, setEditedCode] = useState(code);
+  const [editedCode, setEditedCode] = useState("");
   const [newOptions, setNewOptions] = useState(options);
   const [isSmiley, setIsSmiley] = useState(false);
 
@@ -99,12 +81,6 @@ export default function Item({ title = "" }) {
     setEditedCode(value);
     sendMessage(value, title);
     setIsSmiley(PageCtx.goldenCode === value);
-
-    const updatedData = DUMMY_DATA.map((item) =>
-      item.title === title ? { ...item, code: value } : item
-    );
-
-    DUMMY_DATA.splice(0, DUMMY_DATA.length, ...updatedData);
   }
 
   return (
@@ -112,9 +88,7 @@ export default function Item({ title = "" }) {
       {isSmiley && <img src={smileyFaceImg} alt="smily face image" />}
       <h2 className="h2-title">{title}</h2>
       <CodeMirror
-        //value={NiceEditedCode}
         value={editedCode}
-        //value={editedCode}
         onBeforeChange={(editor, data, value) =>
           MirrorCodeChange(editor, data, value)
         }
